@@ -1,20 +1,15 @@
 from datasets import load_dataset
 from transformers import ViTModel
 from torch.utils.data import DataLoader
-import logging
 import torch
 from tqdm import tqdm
 import numpy as np
 import os
 from typing import Literal
-from utils import get_info
+from utils import get_info, logger
 import torchvision.transforms as T
 from concurrent.futures import ThreadPoolExecutor
 from functools import partial
-
-
-logger = logging.getLogger(__name__)
-logging.basicConfig(level=logging.INFO)
 
 tfm = T.Compose([
     T.Resize((224, 224), interpolation=3),

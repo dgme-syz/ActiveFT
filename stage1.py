@@ -50,7 +50,7 @@ def extract_features(
     device: str = 'cuda' if torch.cuda.is_available() else 'cpu',
     n_last_blocks: int = 4,
     avgpool_patchtokens: bool = False,
-    save_dir: str = None,
+    save_dir: str = '/saves',
     dataset_name: Literal['CIFAR10', 'CIFAR100'] = 'CIFAR10',
     num_workers: int = 2
 ):
@@ -66,7 +66,7 @@ def extract_features(
                 Concatenate [CLS] tokens for the `n` last blocks. We use `n=4` when evaluating ViT-Small and `n=1` with ViT-Base.
             avgpool_patchtokens ('bool', defaults to False):
                 If True, average pool the output of the patch tokens in the last block
-            save_dir ('str', defaults to None):
+            save_dir ('str', defaults to '/saves'):
                 The directory to save the extracted features
             dataset_name ('str', defaults to 'CIFAR10'):
                 The dataset name to use for the feature extraction task

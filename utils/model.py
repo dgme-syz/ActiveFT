@@ -12,12 +12,12 @@ import math
 class SampleModel(nn.Module):
     def __init__(
         self,
-        features: torch.Tensor = None,
+        features: torch.Tensor,
         **kwargs
     ):
         r"""
             Args:
-                features ('torch.Tensor', defaults to None):
+                features ('torch.Tensor'):
                     the output of the model
             Returns:
                 the output of the model
@@ -88,17 +88,45 @@ class SampleModel(nn.Module):
         return J
 
 def train(
-    features: torch.Tensor = None,
-    sample_num: int = None, 
+    features: torch.Tensor,
+    sample_num: int, 
     temperature: float = 0.07,
     balance: float = 1.0,
-    slice: int = None,
+    slice: int | None = None,
     batch_size: int = 100000,
     device: str = 'cuda' if torch.cuda.is_available() else 'cpu',
     iterations: int = 300,
     save_dir: str = 'tmp',
-    scheduler_type: str = "cosine",
+    scheduler_type: str | None = "cosine",
 ) -> List[int]:
+    r"""
+        Train the model to get the samples
+        
+        Args:
+            features ('torch.Tensor'):
+                the output of the model
+            sample_num ('int'):
+                the number of samples
+            temperature ('float'):
+                the temperature of the softmax
+            balance ('float'):
+                the balance of the loss
+            slice ('int'):
+                the slice of the samples
+            batch_size ('int'):
+                the batch size
+            device ('str'):
+                the device to use
+            iterations ('int'):
+                the number of iterations
+            save_dir ('str'):
+                the directory to save the config file
+            scheduler_type ('str'):
+                the type of the scheduler
+                
+        Returns:
+            the sampled ids
+    """
     
     model = SampleModel(
         features=features,

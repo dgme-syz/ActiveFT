@@ -12,7 +12,7 @@ def get_samples(
     temperature: float = 0.07,
     iterations: int = 300,
     balance: float = 1.0,
-    slice: int = None,
+    slice: int | None = None,
     batch_size: int = 100000,
 ):
     r"""
@@ -33,7 +33,7 @@ def get_samples(
                 the number of iterations
             balance ('float', defaults to 1.0):
                 the balance of tge loss
-            slice ('int', defaults to None):
+            slice ('int | None', defaults to None):
                 the slice of the samples
             batch_size ('int', defaults to 100000):
                 the number of samples used in each iteration
